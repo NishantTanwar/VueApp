@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TodoList</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id = "app">
+    <input v-model = "newTodo"type="text">
+    <button v-on:click="addTodo">Add</button>
+    <button v-on:click="reverseTodos">Flip List</button>
+    <ul id = "todo-list">
+        <li v-for="todo in todos">
+            <input type="checkbox" v-bind:checked="todo.done">
+            <span>{{todo.task}}</span>
+        </li>
+    </ul>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            newTodo: '',
+            todos: [
+                {task: 'First Task', done: false},
+                {task: 'Second Task', done: true}
+            ]
+        },
+        methods: {
+            addTodo: function () {
+                this.todos.push({task: this.newTodo})
+            },
+            reverseTodos: function () {
+                this.todos.reverse();
+
+            }
+        }
+    })
+</script>
+</body>
+</html>
